@@ -3,13 +3,13 @@ public class Course {
     private String title;
     private int credit;
     private String department;
-    private Professor lecturer;
-    public Course(String courseCode, String title, int credit, String department, Professor lecturer) {
-        this.courseCode = courseCode;
-        this.title = title;
-        this.credit = credit;
-        this.department = department;
-        this.lecturer = lecturer;
+    private Professor professor;
+    public Course(String courseCode, String title, int credit, String department, Professor professor) {
+        setCourseCode(courseCode);
+        setTitle(title);
+        setCredit(credit);
+        setDepartment(department);
+        this.professor = professor;
     }
     public String getCourseCode() {
         return courseCode;
@@ -23,8 +23,8 @@ public class Course {
     public String getDepartment() {
         return department;
     }
-    public Professor getLecturer() {
-        return lecturer;
+    public String getProfessor() {
+        return professor.toString();
     }
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
@@ -40,6 +40,6 @@ public class Course {
     }
     @Override
     public String toString() {
-        return "Course code : " + courseCode + ", Title : " + title + ", Credit hours: " + credit + ", Department : " + department;
+        return "Course code : " + courseCode + ", Title : " + title + ", Credit hours: " + credit + ", Department : " + department + ", Professor : " + professor.toString();
     }
 }

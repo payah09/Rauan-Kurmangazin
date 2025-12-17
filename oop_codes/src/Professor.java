@@ -9,16 +9,13 @@ public class Professor {
         id = id_counter++;
     }
     Professor(String name, String surname, String email, String specialty) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.specialty = specialty;
+        this();
+        setName(name);
+        setSurname(surname);
+        setEmail(email);
     }
     public int getId() {
         return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
     public String getName() {
         return name;
@@ -38,14 +35,8 @@ public class Professor {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getSpecialty() {
-        return specialty;
-    }
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
-    }
     @Override
     public String toString() {
-
+        return "Professor: " + name + " " + surname + ", email: " + email;
     }
 }
