@@ -4,11 +4,10 @@ public class Professor {
     private String name;
     private String surname;
     private String email;
-    private String specialty;
     Professor() {
         id = id_counter++;
     }
-    Professor(String name, String surname, String email, String specialty) {
+    Professor(String name, String surname, String email) {
         this();
         setName(name);
         setSurname(surname);

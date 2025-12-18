@@ -40,6 +40,6 @@ public class Course {
     }
     @Override
     public String toString() {
-        return "Course code : " + courseCode + ", Title : " + title + ", Credit hours: " + credit + ", Department : " + department + ", Professor : " + professor.toString();
+        return "Course code : " + courseCode + ", Title : " + title + ", Credit hours: " + credit + ", Department : " + department + ", " + professor.toString();
     }
 }
