@@ -24,7 +24,7 @@ public class University {
     }
 
     public void displayInfo() {
-        System.out.println(uniName + "Available courses:");
+        System.out.println(uniName + " Available courses:");
         for (int i = 0; i < courseCount; i++) {
             System.out.println((i + 1) + ". " + courses[i]);
         }
