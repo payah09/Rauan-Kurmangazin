@@ -30,7 +30,6 @@ public class Main {
             System.out.print("Enter your choice: ");
 
             int choice = sc.nextInt();
-            sc.nextLine();
 
             switch (choice) {
                 case 1 -> uni.displayAll();

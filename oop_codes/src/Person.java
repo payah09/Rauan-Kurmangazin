@@ -11,7 +11,6 @@ public abstract class Person {
         setEmail(email);
     }
 
-    // Example of a "Protective" Setter
     public void setEmail(String email) {
         if (email.contains("@")) {
             this.email = email;
