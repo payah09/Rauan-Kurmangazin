@@ -15,7 +15,7 @@ public class University {
         for (Course c : coursePool) {
             if (c.getCourseCode().equalsIgnoreCase(code)) {
                 System.out.println("Found: " + c);
-                return; // Stop searching once found
+                return;
             }
         }
         System.out.println("Course not found.");

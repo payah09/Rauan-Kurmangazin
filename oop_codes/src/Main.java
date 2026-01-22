@@ -1,52 +1,49 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        University uni = new University("Astana IT University");
-        Professor p1 = new Professor("Kairat", "Nurtas", "kn@uni.kz", "CS");
-        Professor p2 = new Professor("Beksultan", "Seifula", "bs@uni.kz", "BDA");
-        Professor p3 = new Professor("Elena", "Ivanova", "elena.i@uni.kz", "MATH");
-        Professor p4 = new Professor("Alan", "Turing", "alan.t@uni.kz", "CS");
-        Professor p5 = new Professor("Sarah", "Connor", "sarah.c@uni.kz", "PHYSICS");
-
-        uni.addCourse(new Course("CS101", "Java Programming", 5, "CS", p1));
-        uni.addCourse(new Course("CS202", "Data Structures", 6, "CS", p4));
-        uni.addCourse(new Course("CS301", "Web Development", 4, "CS", p1));
-
-        uni.addCourse(new Course("BD101", "Database Systems", 3, "BDA", p2));
-        uni.addCourse(new Course("BD205", "Data Mining", 5, "BDA", p2));
-
-        uni.addCourse(new Course("MTH11", "Calculus I", 4, "MATH", p3));
-        uni.addCourse(new Course("MTH12", "Linear Algebra", 3, "MATH", p3));
-        uni.addCourse(new Course("PHY50", "Quantum Mechanics", 2, "PHYSICS", p5));
+        UniversityDBManager db = new UniversityDBManager();
 
         while (true) {
-            System.out.println("   UNIVERSITY MANAGEMENT SYSTEM");
-            System.out.println("1. Display All Courses");
-            System.out.println("2. Search by Course Code");
-            System.out.println("3. Filter by Department");
-            System.out.println("4. Sort by Credits (High to Low)");
-            System.out.println("5. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("\n UNIVERSITY DATABASE SYSTEM ");
+            System.out.println("1. Add Professor     2. List Professors");
+            System.out.println("3. Add Course        4. List All Courses");
+            System.out.println("5. Filter by Dept    6. Exit");
+            System.out.print("Select (1-6): ");
 
             int choice = sc.nextInt();
+            sc.nextLine();
 
             switch (choice) {
-                case 1 -> uni.displayAll();
-                case 2 -> {
-                    System.out.print("Enter Course Code (e.g., CS101): ");
-                    uni.searchByCode(sc.nextLine());
+                case 1 -> {
+                    System.out.print("First Name: "); String n = sc.nextLine();
+                    System.out.print("Surname: "); String s = sc.nextLine();
+                    System.out.print("Email: "); String e = sc.nextLine();
+                    System.out.print("Department: "); String d = sc.nextLine();
+                    db.saveProfessor(new Professor(n, s, e, d));
                 }
+                case 2 -> db.listAllProfessors();
                 case 3 -> {
-                    System.out.print("Enter Department (CS, BDA, MATH, PHYSICS): ");
-                    uni.filterByDepartment(sc.nextLine());
+                    System.out.println("\nTip: Use Option 2 to find Professor IDs.");
+                    System.out.print("Course Code: "); String code = sc.nextLine();
+                    System.out.print("Title: "); String title = sc.nextLine();
+                    System.out.print("Credits: "); int creds = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Department: ");  String cDept = sc.nextLine();
+                    System.out.print("Professor ID: ");int pId = sc.nextInt();
+                    db.saveCourse(new Course(code, title, creds, cDept, null), pId);
                 }
-                case 4 -> uni.sortByCredits();
+                case 4 -> db.listAllCourses();
                 case 5 -> {
-                    System.out.println("Thank you for using the system. Goodbye!");
+                    System.out.print("Enter Department Name to filter: ");
+                    db.filterCoursesByDept(sc.nextLine());
+                }
+                case 6 -> {
+                    System.out.println("Exiting System...");
                     System.exit(0);
                 }
-                default -> System.out.println("Invalid option. Please try again.");
+                default -> System.out.println("Invalid choice.");
             }
         }
     }
